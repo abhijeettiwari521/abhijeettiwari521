@@ -1,6 +1,8 @@
 // ignore: unused_import
 // ignore_for_file: unused_local_variable
 
+import 'package:email_password_loginbs/screens/home_screens.dart';
+import 'package:email_password_loginbs/screens/registrations_screens.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -33,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        prefix: Icon(Icons.mail),
+        prefixIcon: Icon(Icons.mail),
         contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Email",
         border: OutlineInputBorder(
@@ -52,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
-        prefix: Icon(Icons.vpn_key),
+        prefixIcon: Icon(Icons.vpn_key),
         contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Password",
         border: OutlineInputBorder(
@@ -64,13 +66,16 @@ class _LoginScreenState extends State<LoginScreen> {
     final loginButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
-      color: Colors.redAccent,
+      color: Color.fromARGB(255, 37, 70, 236),
       child: MaterialButton(
         padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => HomeScreen()));
+        },
         child: Text(
-          "logIn",
+          "Log In",
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 20,
@@ -86,14 +91,60 @@ class _LoginScreenState extends State<LoginScreen> {
         child: SingleChildScrollView(
           child: Container(
             color: Colors.white,
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: <Widget>[
-                  emailfield,
-                  passwerdfield,
-                  loginButton,
-                ],
+            child: Padding(
+              padding: const EdgeInsets.all(36.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 200,
+                      child: Image.asset(
+                        "assets/images/loginbs.png",
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    emailfield,
+                    SizedBox(
+                      height: 20,
+                    ),
+                    passwerdfield,
+                    SizedBox(
+                      height: 25,
+                    ),
+                    loginButton,
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Don't have a account? "),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RegistrationScreen()),
+                            );
+                          },
+                          child: Text(
+                            "SingUp",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 37, 70, 236),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
